@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .message.success {
+            color: #28a745;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #d9534f;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn-back:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Add New Product</h1>
+
+<div class="form-container">
+    <form th:action="@{/addProduct}" th:object="${product}" method="post">
+        <div class="form-group">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" th:field="*{name}" placeholder="Enter product name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Product Price:</label>
+            <input type="number" id="price" th:field="*{price}" placeholder="Enter product price" required>
+        </div>
+
+        <button type="submit">Add Product</button>
+    </form>
+
+    <a href="/products" class="btn-back">Back to List</a> <!-- Replace '/products' with your list page URL -->
+
+    <div th:if="${param.success}" class="message success">
+        <p>Product added successfully!</p>
+    </div>
+</div>
+
+</body>
+</html>
